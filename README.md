@@ -76,12 +76,12 @@ This tool works only if the ocr xml has been generated with the character by cha
 
 Currently only text elements get processed, image and table elements are ignored. The following text attributes are transfered to TEI:
 
-* italic -> <hi rend="italic"> italic></hi>
-* bold  -> <hi rend="bold">bold></hi>
-* underline  -> <hi rend="underline">underline></hi>
-* strikethrough  -> <hi rend="strikethrough">strikethrough></hi>
-* super <hi rend="super">super</hi>
-* unclear characters -> <unclear cert="unknown" reason="illegible">l</unclear>
+* italic -> `<hi rend="italic"> italic></hi>`
+* bold  -> `<hi rend="bold">bold></hi>`
+* underline  -> `<hi rend="underline">underline></hi>`
+* strikethrough  -> `<hi rend="strikethrough">strikethrough></hi>`
+* super `<hi rend="super">super</hi>`
+* unclear characters -> `<unclear cert="unknown" reason="illegible">l</unclear>`
 
 
 # Building
