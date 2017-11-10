@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Automatic OCR transformation, please change title</title>
+            </titleStmt>
+            <editionStmt>
+                <p/>
+            </editionStmt>
+            <extent>0</extent>
+            <publicationStmt>
+                <p/>
+            </publicationStmt>
+            <sourceDesc>
+                <p/>
+            </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+            <editorialDecl>
+                <p/>
+            </editorialDecl>
+            <projectDesc>
+                <p/>
+            </projectDesc>
+            <refsDecl>
+                <p/>
+            </refsDecl>
+        </encodingDesc>
+        <profileDesc>
+            <creation>
+                <date>2017-11-09 08:31:13</date>
+            </creation>
+            <langUsage>
+                <language ident="en">English</language>
+                <language ident="de">German</language>
+                <language ident="fr">French</language>
+                <language ident="la">Latin</language>
+                <language ident="grc">Greek (ancient), original letters</language>
+                <language ident="grc-la">Greek (ancient), written in Latin script</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+             <pb n="000001"/>
+
+<p>A paragraph with unc<unclear cert="unknown" reason="illegible">l</unclear>ear recognition character.
+I am <hi rend="italic">italic></hi></p>
+<p>and I am <hi rend="bold">bold></hi> <hi rend="underline">underline></hi> <hi rend="strikethrough">strikethrough></hi>
+<hi rend="super">super></hi>
+</p>
+        </body>
+    </text>
+</TEI>
+
+
