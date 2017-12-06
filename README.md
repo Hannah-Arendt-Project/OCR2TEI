@@ -13,6 +13,9 @@ Usage: Finereader XML to basic TEI converter [command] [command options]
     file      Process a single XML File
       Usage: file [options]
         Options:
+          -f, --foreign
+            Add foreign elements to output
+            Default: false
           -h, --help
             print this message
         * -i, --input
@@ -28,10 +31,13 @@ Usage: Finereader XML to basic TEI converter [command] [command options]
         Options:
         * -d, --dir
             The start path of the directory for processing the files
+          -f, --foreign
+            Add foreign elements to output
+            Default: false
           -h, --help
             print this message
-          -lb, --linebreak
-            Add line breaks to p elements
+          -lb, --nolinebreak
+            Add line break to p elements
             Default: true
           -p, --pattern
             The regex pattern for matching the OCR xml files
@@ -73,7 +79,6 @@ The vendor provides a zip file with some [samples](https://abbyy.technology/_med
 
 This tool works only if the ocr xml has been generated with the character by character generation, so not with the basic format.
 
-
 Currently only text elements get processed, image and table elements are ignored. The following text attributes are transfered to TEI:
 
 * italic -> `<hi rend="italic"> italic></hi>`
@@ -82,6 +87,8 @@ Currently only text elements get processed, image and table elements are ignored
 * strikethrough  -> `<hi rend="strikethrough">strikethrough></hi>`
 * super `<hi rend="super">super</hi>`
 * unclear characters -> `<unclear cert="unknown" reason="illegible">l</unclear>`
+* document language -> `<TEI lang="en">`
+* other languages as foreign element if -f parameter has been set -> `<foreign lang="lat">...</foreign>`
 
 
 # Building
@@ -99,6 +106,14 @@ The output does not contain the whole TEI schema. Instead a simple outputTemplat
 `xjc -d ocr2tei/src/main/java -p de.sub.goettingen.arendt.output.generated  outputTemplate.xsd`
 
 Afterwards you have to adapt the classes under de.sub.goettingen.arendt.ocrmapping for the changed structure.
+
+# New for v1.1
+
+ * Support for XPath expression before processing
+ * extracting of main document language
+ * each TEI document gets an ID
+ * support for foreign element if specified via command line option
+ * improved whitespace handling. The OCR output is missing some whitespaces, this version tries the best to fix the whitespaces 
 
 # Further information
 

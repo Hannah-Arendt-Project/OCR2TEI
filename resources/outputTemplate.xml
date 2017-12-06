@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<?xml-model href="transcriptionsSchema.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="asd" xml:lang="de">
     <teiHeader>
         <fileDesc>
             <titleStmt>
@@ -43,12 +45,22 @@
     </teiHeader>
     <text>
         <body>
-             <pb n="000001"/>
-
-<p>A paragraph with unc<unclear cert="unknown" reason="illegible">l</unclear>ear recognition character.
-I am <hi rend="italic">italic></hi></p>
-<p>and I am <hi rend="bold">bold></hi> <hi rend="underline">underline></hi> <hi rend="strikethrough">strikethrough></hi>
-<hi rend="super">super></hi>
+            
+            
+             <pb n="XY-III"/>
+            
+            <p>Another Paragraph</p>
+            
+            <pb n="XY-IV"/>
+            
+            <ab>Anonymous Block</ab><ab>Anonymous Block</ab>
+            <ab><hi rend="bold">Bold</hi><hi rend="center">center</hi><hi rend="italic">italic</hi><hi rend="super">super</hi><hi rend="underline">underline</hi></ab>
+            <p>
+    <foreign xml:lang="en">I am foreign</foreign>
+    A paragraph with unc<unclear cert="unknown" reason="illegible">l</unclear>ear recognition character.
+                I am <hi rend="italic">italic></hi><foreign xml:lang="en"><hi rend="italic">I am foreign</hi> and also</foreign></p>
+<p>and I am <hi rend="bold">bold></hi> <hi rend="underline">underline></hi> <hi rend="center">strikethrough></hi>
+    <hi rend="super">sup<unclear cert="unknown" reason="illegible">This is unclear</unclear>r></hi>
 </p>
         </body>
     </text>

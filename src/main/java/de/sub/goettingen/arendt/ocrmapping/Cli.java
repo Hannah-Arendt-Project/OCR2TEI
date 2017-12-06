@@ -48,8 +48,11 @@ public class Cli {
 		@Parameter(names = { "-o", "--output" }, description = "The path and filename to the generated TEI output file", required = true)
 		private String outputFile = null;	
 		
-		@Parameter(names = { "-lb", "--linebreak" }, description = "Add line breaks to p elements", required = false, arity = 1)
-		private boolean lineBreak = true;			
+		@Parameter(names = { "-lb", "--linebreak" }, description = "Add line breaks to p elements", required = false)
+		private boolean lineBreak = true;		
+		
+		@Parameter(names = { "-f", "--foreign" }, description = "Add foreign elements to output", required = false)
+		private boolean foreignElements = false;			
 		
 		@Parameter(names = { "-h", "--help" }, description = "print this message", help = true)
 		private boolean help;	
@@ -60,8 +63,11 @@ public class Cli {
 		@Parameter(names = { "-d", "--dir" }, description = "The start path of the directory for processing the files", required = true)
 		private String path = null;
 				
-		@Parameter(names = { "-lb", "--linebreak" }, description = "Add line breaks to p elements", required = false, arity = 1)
+		@Parameter(names = { "-lb", "--nolinebreak" }, description = "Add line break to p elements", required = false)
 		private boolean lineBreak = true;
+		
+		@Parameter(names = { "-f", "--foreign" }, description = "Add foreign elements to output", required = false)
+		private boolean foreignElements = false;				
 		
 		@Parameter(names = { "-s", "--specific" }, description = "Do very project specific directory scanning (outside of this project do NOT set this option to true)", required = false)
 		private boolean specificWalk = false;
@@ -100,7 +106,7 @@ public class Cli {
 		}
 		
 		if (jc.getParsedCommand() != null) {
-		  if (jc.getParsedCommand().equals("single")) {
+		  if (jc.getParsedCommand().equals("file")) {
 			main.runSingle();
 		  }else if (jc.getParsedCommand().equals("dir")) {
 			main.rundDirectory();
@@ -117,7 +123,9 @@ public class Cli {
         System.out.println("Start to process Input File " + Cli.commandSingle.inputFile + " into " + Cli.commandSingle.outputFile);
         
         try {
-			TEI tei = ReadXML.convert2Tei(Cli.commandSingle.inputFile, Cli.commandSingle.lineBreak);
+			TEI tei = ReadXML.convert2Tei(Cli.commandSingle.inputFile, 
+					Cli.commandSingle.lineBreak, 
+					null, Cli.commandSingle.foreignElements);
 			boolean success = OutputXML.writeXMLOutput(tei, Cli.commandSingle.outputFile);
 			if (success == false) {
 				System.out.println("Failure on writing XML output");
@@ -154,6 +162,7 @@ public class Cli {
 						System.out.println("file found at path: " + file.toAbsolutePath());
 						System.out.println("\tStart to process Input File " + file.getFileName().toString() + " into TEI");
 						String teiFilePath = null;
+						String documentId = "";
 						
 						// project specific Filename and path setting
 						// dir is structured like
@@ -164,6 +173,7 @@ public class Cli {
 						// with file IV-NUMBER_TEI_Originalfilename.xml
 						if (Cli.commandDir.specificWalk) {
 							String newTEIDirname = file.getParent().getFileName().toString().replace("_xml", "_TEI");
+							documentId = "Volume-"+newTEIDirname;
 							Path newTEIDir= file.getParent().resolveSibling(newTEIDirname);
 
 							String teiFilename = newTEIDirname +"_"+ file.getFileName().toString().replace("ocr_", "");
@@ -183,12 +193,14 @@ public class Cli {
 							// generic dir traverse, just append TEI and use the original file name
 							// and save it into the same dir
 							String teiFilename = "TEI-"+file.getFileName().toString();
+							documentId = getBaseName(file.getFileName().toString());
 							teiFilePath = Paths.get(file.getParent().toString(), teiFilename).toString();							
 						}		
 
 						
 						try {
-							TEI tei = ReadXML.convert2Tei(file.toAbsolutePath().toString(), true);
+							TEI tei = ReadXML.convert2Tei(file.toAbsolutePath().toString(), Cli.commandDir.lineBreak,
+									documentId, Cli.commandDir.foreignElements);
 							
 							boolean success = OutputXML.writeXMLOutput(tei, teiFilePath);
 							if (success == false) {
@@ -228,5 +240,14 @@ public class Cli {
 		}
 		System.out.println("Finished, processed " + cntr + " files");
     }
+    
+    public static String getBaseName(String fileName) {
+        int index = fileName.lastIndexOf('.');
+        if (index == -1) {
+            return fileName;
+        } else {
+            return fileName.substring(0, index);
+        }
+    }   
 
 }

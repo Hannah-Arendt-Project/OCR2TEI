@@ -2,7 +2,7 @@
 // Diese Datei wurde mit der JavaTM Architecture for XML Binding(JAXB) Reference Implementation, v2.2.8-b130911.1802 generiert 
 // Siehe <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Änderungen an dieser Datei gehen bei einer Neukompilierung des Quellschemas verloren. 
-// Generiert: 2017.11.09 um 08:08:26 AM CET 
+// Generiert: 2017.11.14 um 11:36:43 AM CET 
 //
 
 
@@ -48,9 +48,9 @@ import javax.xml.bind.annotation.XmlType;
 public class P {
 
     @XmlElementRefs({
-        @XmlElementRef(name = "foreign", namespace = "http://www.tei-c.org/ns/1.0", type = Foreign.class, required = false),
+        @XmlElementRef(name = "hi", namespace = "http://www.tei-c.org/ns/1.0", type = Hi.class, required = false),
         @XmlElementRef(name = "unclear", namespace = "http://www.tei-c.org/ns/1.0", type = Unclear.class, required = false),
-        @XmlElementRef(name = "hi", namespace = "http://www.tei-c.org/ns/1.0", type = Hi.class, required = false)
+        @XmlElementRef(name = "foreign", namespace = "http://www.tei-c.org/ns/1.0", type = Foreign.class, required = false)
     })
     @XmlMixed
     protected List<Object> content;
@@ -73,10 +73,10 @@ public class P {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Unclear }
-     * {@link Foreign }
      * {@link Hi }
      * {@link String }
+     * {@link Foreign }
+     * {@link Unclear }
      * 
      * 
      */

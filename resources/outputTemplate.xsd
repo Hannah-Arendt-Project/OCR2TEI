@@ -7,6 +7,7 @@
         <xs:element ref="ns1:teiHeader"/>
         <xs:element ref="ns1:text"/>
       </xs:sequence>
+      <xs:attribute ref="xml:id" use="required"/>
       <xs:attribute ref="xml:lang" use="required"/>
     </xs:complexType>
   </xs:element>
@@ -123,7 +124,6 @@
       <xs:sequence>
         <xs:element ref="ns1:body"/>
       </xs:sequence>
-      <xs:attribute ref="xml:lang" use="required"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="body">
@@ -137,16 +137,14 @@
   </xs:element>
   <xs:element name="ab">
     <xs:complexType mixed="true">
-      <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element ref="ns1:hi"/>
-        <xs:element ref="ns1:unclear"/>
-      </xs:choice>
-      <xs:attribute name="type" type="xs:NCName"/>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ns1:hi"/>
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="pb">
     <xs:complexType>
-      <xs:attribute name="n" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="n" use="required" type="xs:NCName"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="p">
@@ -160,13 +158,10 @@
   </xs:element>
   <xs:element name="foreign">
     <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ns1:hi"/>
+      </xs:sequence>
       <xs:attribute ref="xml:lang" use="required"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="unclear">
-    <xs:complexType mixed="true">
-      <xs:attribute name="cert" use="required" type="xs:NCName"/>
-      <xs:attribute name="reason" use="required" type="xs:NCName"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="hi">
@@ -175,6 +170,12 @@
         <xs:element minOccurs="0" maxOccurs="unbounded" ref="ns1:unclear"/>
       </xs:sequence>
       <xs:attribute name="rend" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="unclear">
+    <xs:complexType mixed="true">
+      <xs:attribute name="cert" use="required" type="xs:NCName"/>
+      <xs:attribute name="reason" use="required" type="xs:NCName"/>
     </xs:complexType>
   </xs:element>
 </xs:schema>

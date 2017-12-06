@@ -57,13 +57,14 @@ public class OutputXML {
 	 * like in the TEI header
 	 * @return
 	 */
-	public static TEI getTEIHeader(String mainLang) {
+	public static TEI getTEIHeader(String mainLang, String documentId) {
 		TEI tei = new TEI();
 		
 		if (mainLang != null)
 			tei.setLang(mainLang);
 		TeiHeader teiHeader = new TeiHeader();
-		
+		if (documentId != null)
+			tei.setId(documentId);
 		FileDesc fileDesc = new FileDesc();
 		TitleStmt titleStmt = new TitleStmt();
 		titleStmt.setTitle("Automatic OCR transformation, please change title");
