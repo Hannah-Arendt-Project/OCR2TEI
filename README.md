@@ -107,13 +107,17 @@ The output does not contain the whole TEI schema. Instead a simple outputTemplat
 
 Afterwards you have to adapt the classes under de.sub.goettingen.arendt.ocrmapping for the changed structure.
 
-# New for v1.1
+## New for v1.1
 
  * Support for XPath expression before processing
  * extracting of main document language
  * each TEI document gets an ID
  * support for foreign element if specified via command line option
  * improved whitespace handling. The OCR output is missing some whitespaces, this version tries the best to fix the whitespaces 
+
+ ## New for v1.1.1
+
+ * changed XML id for Arendt specific directory processing
 
 # Further information
 
