@@ -173,7 +173,7 @@ public class Cli {
 						// with file IV-NUMBER_TEI_Originalfilename.xml
 						if (Cli.commandDir.specificWalk) {
 							String newTEIDirname = file.getParent().getFileName().toString().replace("_xml", "_TEI");
-							documentId = "Volume-"+newTEIDirname;
+							documentId = newTEIDirname.substring(0, newTEIDirname.length()-4);
 							Path newTEIDir= file.getParent().resolveSibling(newTEIDirname);
 
 							String teiFilename = newTEIDirname +"_"+ file.getFileName().toString().replace("ocr_", "");

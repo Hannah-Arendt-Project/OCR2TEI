@@ -59,16 +59,7 @@ public class ReadXML {
 		//TEI tei = convert2Tei("/tmp/ocr_1504081850380.xml", true);
 		TEI tei = convert2Tei("/Users/Johannes/Documents/Arendt/oc2tei/cloud/Hannah-Arendt/Scans/Band-XIV-NL/XIV-NL-02/ocr-03/Arendt-XIV-NL-02-03_xml/ocr_1504604413610.xml", 
 				true, "Lokaltest", true);
-		// distinct-values(//formatting/@lang)
-		//https://stackoverflow.com/questions/8607464/how-to-count-each-instance-of-distinct-values-in-xquery
-		/*
-		 * 
-for $v in distinct-values(//formatting/@lang)
-	return
-	($v, count(index-of(//formatting/@lang, $v)))
 
-http://www.baeldung.com/java-xpath
-		 */
 		OutputXML.writeXMLOutputToStdout(tei);
 	}
 	
@@ -116,7 +107,7 @@ http://www.baeldung.com/java-xpath
 			// this should exactly represent that file. We can't get the original filename from the XML
 			// also if we have a document Id (CLI) option we add this as prefix, too.
 			if (documentId != null)
-				oPb.setN(documentId + String.format("%06d", pageNumber));
+				oPb.setN(documentId + "-" + String.format("%08d", pageNumber));
 			else
 				oPb.setN(String.format("%06d", pageNumber));		
 			
