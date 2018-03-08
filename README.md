@@ -64,7 +64,7 @@ The linebreak element just controls the output of the XML p blocks. Semantically
 <p>This is the first line. This is the second line</p>
 ```
 
-**no line breaks**
+**Line breaks**
 
 ```
 <p>This is the first line. 
